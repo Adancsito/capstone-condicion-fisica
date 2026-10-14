@@ -5,6 +5,14 @@
 **Quién autoriza este trabajo:** instrucción directa del usuario del 13-oct-2026 ("la aplicación definitiva, desde cero, en Angular y luego Capacitor").
 **Fuente metodológica:** `capstone-shared/docs/15-actualizacion-metodologica-claude-2026-10-06.md` (sincronizado el 13-oct). Prevalece sobre `docs/12` y `docs/06`. El inventario vigente está en `capstone-shared/INVENTARIO_FINAL_2026-10-13.md`.
 
+## 0. Contexto confirmado por el usuario (13-oct, tarde)
+
+- **T2 en una semana** (alrededor del 20 de octubre).
+- **No hay datos reales** y **no se avanza con los modelos**. El trabajo actual es la recolección de datos y el desarrollo del frontend. La fase 4 (modelos reales) queda fuera de la T2.
+- El usuario crea el proyecto Firebase.
+- **Instrumentos aplicables a todos los participantes:** dinamómetro (probable), tensiómetro, reloj inteligente, tallímetro y balanza digital. No hay BIA, cajón de flexibilidad ni banco confirmados.
+- **Capacidad cardiorrespiratoria:** hay un recorrido de 2 km medido; la caminadora solo se usará cuando el participante pueda ir al gimnasio. Las pruebas de caminadora (Ebbeling), de caminata de 2 km (UKK) y de carrera de 2 km **no son equivalentes**. Recomendación: una sola prueba para todos (UKK en el recorrido medido); decisión pendiente (sección 11).
+
 ## 1. Qué se construye
 
 Una sola base de código Angular con tres modos:
@@ -141,7 +149,9 @@ El plazo exacto de la T2 está por confirmar. Si sigue siendo alrededor del 20 d
 | **3. Android y web** | D5–D6 | APK de depuración en emulador o teléfono, versión web en Hosting | La app abre, funciona sin red y se instala |
 | **4. Modelos reales** | Cuando existan los datos | Pipeline nuevo con diccionario de datos propio, exportador de paquetes, prueba de paridad, integración | Paridad Python–TypeScript y `meetsCriteria` calculado desde la validación |
 
-Las fases 0 a 3 son alcanzables en el plazo. **La fase 4 depende de recolectar los 100 participantes**, y eso no cabe en una semana: para la T2 la app mostraría el modo Investigador real y el modo Perfil con el paquete demo, salvo que ya existan datos piloto.
+Las fases 0 a 3 son alcanzables en el plazo. **La fase 4 depende de recolectar los 100 participantes** y queda fuera de la T2 (confirmado): para la T2 la app mostraría el modo Investigador real y el modo Perfil con el paquete demo rotulado.
+
+**Estado de la fase 0 (13-oct):** hecha. Sin SSR (la compilación genera `dist/Capstone/browser`), estructura por funcionalidades con rutas perezosas (`inicio`, `perfil`, `investigador`, `acerca`), tokens de diseño con modo oscuro, 5 pruebas unitarias en verde y revisión visual en 375 px, claro y oscuro. Queda pendiente el proyecto Firebase (lo crea el usuario).
 
 ## 9. Verificación
 
@@ -163,14 +173,18 @@ Las fases 0 a 3 son alcanzables en el plazo. **La fase 4 depende de recolectar l
 | Capacitor 8 puede exigir una versión de JDK distinta de la instalada (Java 17 en PATH) | Verificar al ejecutar `cap add android`; Android Studio trae su propio JDK |
 | `appId` provisional `com.capstone.fitnesslevel` | Definir el definitivo antes de cualquier publicación |
 
-## 11. Decisiones pendientes del usuario
+## 11. Decisiones
 
-1. **Fecha exacta de la T2** y qué se presenta (demostración de la app, resultados, ambas).
-2. **¿Existen ya datos recolectados o un piloto?** Define si la fase 4 cabe en la T2.
-3. **Prioridad:** modo Perfil primero (lo pedido) o modo Investigador primero (el que desbloquea la recolección).
-4. **Firebase:** crear el proyecto con tu cuenta de Google, en el plan Spark.
-5. **Interfaz:** diseño propio (recomendado) o Ionic.
+**Resueltas:** T2 en una semana; sin datos ni modelos en la T2; el usuario crea el proyecto Firebase (plan Spark).
+
+**Pendientes del usuario:**
+
+1. **Prueba cardiorrespiratoria única.** Recomendación: UKK de 2 km en el recorrido medido, para todos. Quien no pueda hacerla queda sin ese resultado (cada modelo usa las filas con resultado disponible). Admitir caminadora como alternativa exigiría registrarla como otro método y un subestudio de concordancia aprobado por el profesor. Correr los 2 km no se recomienda.
+2. **Frecuencia cardiaca con el reloj.** La UKK depende de ella; `docs/12` pide comprobar el reloj contra una banda pectoral antes de confiar en él.
+3. **Composición corporal, flexibilidad y extensores del tronco.** Sin BIA, cajón ni banco confirmados, esos tres resultados del Capstone V5 no tienen instrumento. ¿La balanza digital mide impedancia? El tensiómetro se registra como dato de tamizaje, no como resultado.
+4. **Prioridad:** modo Investigador primero (la recolección está en curso) o modo Perfil primero.
+5. **Interfaz:** diseño propio (adoptado por defecto en la fase 0) o Ionic.
 6. **Nombre y `appId` definitivos** de la aplicación.
 7. **Modo Demostración:** confirmar que es aceptable mostrarlo, siempre rotulado, en la presentación.
-8. **Módulo de validación con expertos:** definir si es un formulario dentro de la web o un instrumento aparte.
-9. **Batería del protocolo `v0`:** confirmar que la del Capstone V5 (sección 6) es la vigente, y si habrá equipo BIA.
+8. **Módulo de validación con expertos:** formulario dentro de la web o instrumento aparte.
+9. **Batería del protocolo `v0`:** confirmar o corregir la del Capstone V5 (sección 6) según los puntos 1 a 3.
