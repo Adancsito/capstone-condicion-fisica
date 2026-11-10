@@ -153,6 +153,14 @@ Las fases 0 a 3 son alcanzables en el plazo. **La fase 4 depende de recolectar l
 
 **Estado de la fase 0 (13-oct):** hecha. Sin SSR (la compilación genera `dist/Capstone/browser`), estructura por funcionalidades con rutas perezosas (`inicio`, `perfil`, `investigador`, `acerca`), tokens de diseño con modo oscuro, 5 pruebas unitarias en verde y revisión visual en 375 px, claro y oscuro. Queda pendiente el proyecto Firebase (lo crea el usuario).
 
+**Estado al 19-oct (actualización):**
+
+- **Fase 1 (modo Perfil): hecha con paquete de demostración.** Formulario generado desde el manifiesto (obligatorias según los modelos), reglas de salida (valor continuo, «Requiere prueba directa» por no cumplir, por rango de entrenamiento o por medida faltante), niveles solo con exactitud balanceada > 70 %, historial local, banner de demostración. Evaluadores de regresión lineal, Random Forest y XGBoost con prueba de paridad contra Python (25 casos fijos, tolerancia 1e-3).
+- **Fase 2 (modo Investigador): hecha en versión local.** Protocolo generado desde la base de datos, ficha paso a paso con compuerta de seguridad (consentimiento, elegibilidad, PAR-Q+, criterio de seguridad), avisos de repetibilidad, cronómetro, persistencia sin conexión en el dispositivo y exportación CSV/JSON. **Falta la sincronización con Firebase** (el proyecto no existe; la interfaz `SessionStoreService` ya la admite) y el inicio de sesión.
+- **Fase 3 (Android y web): APK de depuración generado** (`android/app/build/outputs/apk/debug/app-debug.apk`, con el paquete de demostración). No se ejecutó en un emulador porque el equipo no tiene el controlador de aceleración del emulador; falta probarlo en un teléfono. La versión web en Hosting depende del proyecto de Firebase.
+- **Fase 4:** el exportador de paquetes y la prueba de paridad existen; los modelos reales esperan los datos (mínimo provisional de 30 participantes utilizables).
+- Producción: la compilación excluye el paquete de demostración y `npm run build:prod` falla si lo encuentra.
+
 ## 9. Verificación
 
 - Pruebas de unidad de los evaluadores de modelo, la validación de rangos y las reglas de salida.

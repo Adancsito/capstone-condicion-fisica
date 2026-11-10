@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Condición física</string>
+    <string name="title_activity_main">Condición física</string>
+    <string name="package_name">com.capstone.fitnesslevel</string>
+    <string name="custom_url_scheme">com.capstone.fitnesslevel</string>
+</resources>

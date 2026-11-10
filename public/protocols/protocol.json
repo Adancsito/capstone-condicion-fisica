@@ -1,0 +1,1057 @@
+{
+ "protocolId": "capstone-registro-de-sesion",
+ "title": "Ficha de registro de sesión",
+ "sections": [
+  {
+   "id": "ident",
+   "title": "Identificación",
+   "fields": [
+    {
+     "key": "id_participante",
+     "label": "Código del participante",
+     "type": "text",
+     "help": "Formato P001 a P120. No escribas nombre ni DNI.",
+     "pattern": "^P\\d{3}$",
+     "required": true
+    },
+    {
+     "key": "fecha",
+     "label": "Fecha",
+     "type": "date",
+     "required": true
+    },
+    {
+     "key": "hora_inicio",
+     "label": "Hora de inicio",
+     "type": "time",
+     "required": true
+    },
+    {
+     "key": "evaluador",
+     "label": "Evaluador",
+     "type": "text",
+     "required": true
+    }
+   ]
+  },
+  {
+   "id": "elegib",
+   "title": "Consentimiento y elegibilidad",
+   "fields": [
+    {
+     "key": "consentimiento",
+     "label": "Consentimiento informado firmado",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "edad_anios",
+     "label": "Edad (años cumplidos)",
+     "type": "integer",
+     "unit": "años",
+     "min": 18.0,
+     "max": 40.0,
+     "required": true
+    },
+    {
+     "key": "sexo",
+     "label": "Sexo de referencia",
+     "type": "select",
+     "options": [
+      {
+       "value": "M",
+       "label": "Masculino"
+      },
+      {
+       "value": "F",
+       "label": "Femenino"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "dias_entreno_sem",
+     "label": "Días de entrenamiento por semana (últimos 3 meses)",
+     "type": "integer",
+     "unit": "días",
+     "min": 0.0,
+     "max": 7.0,
+     "required": true
+    },
+    {
+     "key": "entrena_competitivo",
+     "label": "¿Entrena fuerza o resistencia de forma competitiva?",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "elegible",
+     "label": "Elegible según el protocolo (18 a 40 años, sin entrenamiento competitivo, capaz de completar las pruebas)",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    }
+   ]
+  },
+  {
+   "id": "seguridad",
+   "title": "Seguridad y reposo",
+   "fields": [
+    {
+     "key": "parq_aplicado",
+     "label": "PAR-Q+ aplicado",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "parq_resultado",
+     "label": "Resultado del PAR-Q+",
+     "type": "select",
+     "options": [
+      {
+       "value": "Apto",
+       "label": "Apto"
+      },
+      {
+       "value": "Derivar",
+       "label": "Derivar o no realizar pruebas"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "fc_reposo_lpm",
+     "label": "Frecuencia cardiaca en reposo",
+     "type": "number",
+     "unit": "lpm",
+     "min": 30.0,
+     "max": 130.0,
+     "required": true
+    },
+    {
+     "key": "fc_dispositivo_reposo",
+     "label": "Dispositivo de frecuencia cardiaca",
+     "type": "select",
+     "options": [
+      {
+       "value": "banda",
+       "label": "Banda pectoral"
+      },
+      {
+       "value": "reloj",
+       "label": "Reloj de muñeca"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "criterio_seguridad",
+     "label": "Criterio de seguridad del protocolo para continuar",
+     "type": "select",
+     "options": [
+      {
+       "value": "Cumple",
+       "label": "Cumple"
+      },
+      {
+       "value": "No cumple",
+       "label": "No cumple (no continuar)"
+      }
+     ],
+     "required": true
+    }
+   ]
+  },
+  {
+   "id": "antrop",
+   "title": "Antropometría (dos lecturas por medida)",
+   "fields": [
+    {
+     "key": "peso_kg_1",
+     "label": "Peso: lectura 1",
+     "type": "number",
+     "unit": "kg",
+     "min": 30.0,
+     "max": 250.0,
+     "required": true
+    },
+    {
+     "key": "peso_kg_2",
+     "label": "Peso: lectura 2",
+     "type": "number",
+     "unit": "kg",
+     "min": 30.0,
+     "max": 250.0,
+     "required": true
+    },
+    {
+     "key": "talla_cm_1",
+     "label": "Talla: lectura 1",
+     "type": "number",
+     "unit": "cm",
+     "min": 120.0,
+     "max": 230.0,
+     "required": true
+    },
+    {
+     "key": "talla_cm_2",
+     "label": "Talla: lectura 2",
+     "type": "number",
+     "unit": "cm",
+     "min": 120.0,
+     "max": 230.0,
+     "required": true
+    },
+    {
+     "key": "cintura_cm_1",
+     "label": "Cintura: lectura 1",
+     "type": "number",
+     "unit": "cm",
+     "min": 40.0,
+     "max": 200.0,
+     "required": true
+    },
+    {
+     "key": "cintura_cm_2",
+     "label": "Cintura: lectura 2",
+     "type": "number",
+     "unit": "cm",
+     "min": 40.0,
+     "max": 200.0,
+     "required": true
+    },
+    {
+     "key": "cadera_cm_1",
+     "label": "Cadera: lectura 1",
+     "type": "number",
+     "unit": "cm",
+     "min": 50.0,
+     "max": 200.0,
+     "required": true
+    },
+    {
+     "key": "cadera_cm_2",
+     "label": "Cadera: lectura 2",
+     "type": "number",
+     "unit": "cm",
+     "min": 50.0,
+     "max": 200.0,
+     "required": true
+    },
+    {
+     "key": "brazo_cm_1",
+     "label": "Circunferencia de brazo: lectura 1",
+     "type": "number",
+     "unit": "cm",
+     "min": 15.0,
+     "max": 60.0,
+     "required": true
+    },
+    {
+     "key": "brazo_cm_2",
+     "label": "Circunferencia de brazo: lectura 2",
+     "type": "number",
+     "unit": "cm",
+     "min": 15.0,
+     "max": 60.0,
+     "required": true
+    },
+    {
+     "key": "muslo_cm_1",
+     "label": "Circunferencia de muslo: lectura 1",
+     "type": "number",
+     "unit": "cm",
+     "min": 30.0,
+     "max": 100.0,
+     "required": true
+    },
+    {
+     "key": "muslo_cm_2",
+     "label": "Circunferencia de muslo: lectura 2",
+     "type": "number",
+     "unit": "cm",
+     "min": 30.0,
+     "max": 100.0,
+     "required": true
+    },
+    {
+     "key": "pantorrilla_cm_1",
+     "label": "Circunferencia de pantorrilla: lectura 1",
+     "type": "number",
+     "unit": "cm",
+     "min": 20.0,
+     "max": 70.0,
+     "required": true
+    },
+    {
+     "key": "pantorrilla_cm_2",
+     "label": "Circunferencia de pantorrilla: lectura 2",
+     "type": "number",
+     "unit": "cm",
+     "min": 20.0,
+     "max": 70.0,
+     "required": true
+    },
+    {
+     "key": "lado_medido",
+     "label": "Lado medido en brazo, muslo y pantorrilla (siempre el mismo)",
+     "type": "select",
+     "options": [
+      {
+       "value": "D",
+       "label": "Derecha"
+      },
+      {
+       "value": "I",
+       "label": "Izquierda"
+      }
+     ],
+     "required": true
+    }
+   ]
+  },
+  {
+   "id": "bia",
+   "title": "Composición corporal: bioimpedancia, antes de cualquier esfuerzo",
+   "fields": [
+    {
+     "key": "bia_realizada",
+     "label": "¿Se realizó la bioimpedancia?",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "bia_motivo_no",
+     "label": "Motivo si no se realizó",
+     "type": "text",
+     "required": {
+      "if": {
+       "key": "bia_realizada",
+       "equals": "No"
+      }
+     },
+     "visibleIf": {
+      "key": "bia_realizada",
+      "equals": "No"
+     }
+    },
+    {
+     "key": "bia_pct_grasa",
+     "label": "% de grasa corporal",
+     "type": "number",
+     "unit": "%",
+     "min": 3.0,
+     "max": 60.0,
+     "help": "Se mide antes de cualquier esfuerzo, con la misma balanza para todos.",
+     "required": {
+      "if": {
+       "key": "bia_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "bia_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "bia_entradas_registradas",
+     "label": "Entradas del equipo (peso, talla, edad, sexo) registradas",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": {
+      "if": {
+       "key": "bia_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "bia_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "bia_horas_ultima_comida",
+     "label": "Horas desde la última comida",
+     "type": "number",
+     "unit": "horas",
+     "min": 0.0,
+     "max": 24.0,
+     "required": {
+      "if": {
+       "key": "bia_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "bia_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "bia_ejercicio_24h",
+     "label": "Ejercicio en las últimas 24 h",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": {
+      "if": {
+       "key": "bia_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "bia_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "bia_hidratacion",
+     "label": "Hidratación declarada",
+     "type": "select",
+     "options": [
+      {
+       "value": "habitual",
+       "label": "Habitual"
+      },
+      {
+       "value": "poca",
+       "label": "Poca"
+      },
+      {
+       "value": "mucha",
+       "label": "Mucha"
+      }
+     ],
+     "required": {
+      "if": {
+       "key": "bia_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "bia_realizada",
+      "equals": "Sí"
+     }
+    }
+   ]
+  },
+  {
+   "id": "flex",
+   "title": "Flexibilidad: sit-and-reach",
+   "fields": [
+    {
+     "key": "sr_realizada",
+     "label": "¿Se realizó el sit-and-reach?",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "sr_motivo_no",
+     "label": "Motivo si no se realizó",
+     "type": "text",
+     "required": {
+      "if": {
+       "key": "sr_realizada",
+       "equals": "No"
+      }
+     },
+     "visibleIf": {
+      "key": "sr_realizada",
+      "equals": "No"
+     }
+    },
+    {
+     "key": "sr_cm_1",
+     "label": "Alcance: intento 1",
+     "type": "number",
+     "unit": "cm",
+     "min": -30.0,
+     "max": 60.0,
+     "help": "El cero está en la línea de los pies: positivo si pasa de los pies, negativo si no llega.",
+     "required": {
+      "if": {
+       "key": "sr_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "sr_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "sr_cm_2",
+     "label": "Alcance: intento 2",
+     "type": "number",
+     "unit": "cm",
+     "min": -30.0,
+     "max": 60.0,
+     "required": {
+      "if": {
+       "key": "sr_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "sr_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "sr_cm_3",
+     "label": "Alcance: intento 3",
+     "type": "number",
+     "unit": "cm",
+     "min": -30.0,
+     "max": 60.0,
+     "required": {
+      "if": {
+       "key": "sr_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "sr_realizada",
+      "equals": "Sí"
+     }
+    }
+   ]
+  },
+  {
+   "id": "grip",
+   "title": "Fuerza: prensión manual máxima",
+   "fields": [
+    {
+     "key": "grip_mano_dominante",
+     "label": "Mano dominante",
+     "type": "select",
+     "options": [
+      {
+       "value": "D",
+       "label": "Derecha"
+      },
+      {
+       "value": "I",
+       "label": "Izquierda"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "grip_mano_evaluada",
+     "label": "Mano evaluada",
+     "type": "select",
+     "options": [
+      {
+       "value": "D",
+       "label": "Derecha"
+      },
+      {
+       "value": "I",
+       "label": "Izquierda"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "grip_kg_1",
+     "label": "Prensión: intento 1",
+     "type": "number",
+     "unit": "kg",
+     "min": 0.0,
+     "max": 120.0,
+     "required": true
+    },
+    {
+     "key": "grip_kg_2",
+     "label": "Prensión: intento 2",
+     "type": "number",
+     "unit": "kg",
+     "min": 0.0,
+     "max": 120.0,
+     "required": true
+    },
+    {
+     "key": "grip_kg_3",
+     "label": "Prensión: intento 3",
+     "type": "number",
+     "unit": "kg",
+     "min": 0.0,
+     "max": 120.0,
+     "required": true
+    }
+   ]
+  },
+  {
+   "id": "trunk",
+   "title": "Resistencia: sostén de los extensores del tronco",
+   "fields": [
+    {
+     "key": "trunk_realizada",
+     "label": "¿Se realizó el test del tronco?",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "trunk_motivo_no",
+     "label": "Motivo si no se realizó",
+     "type": "text",
+     "required": {
+      "if": {
+       "key": "trunk_realizada",
+       "equals": "No"
+      }
+     },
+     "visibleIf": {
+      "key": "trunk_realizada",
+      "equals": "No"
+     }
+    },
+    {
+     "key": "trunk_tiempo_s",
+     "label": "Tiempo de sostén",
+     "type": "number",
+     "unit": "s",
+     "min": 0.0,
+     "max": 600.0,
+     "help": "Cronometra desde que el tronco queda horizontal hasta que baja de la horizontal.",
+     "required": {
+      "if": {
+       "key": "trunk_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "trunk_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "trunk_fin",
+     "label": "Terminó por",
+     "type": "select",
+     "options": [
+      {
+       "value": "fatiga",
+       "label": "Fatiga"
+      },
+      {
+       "value": "postura",
+       "label": "Pérdida de postura"
+      },
+      {
+       "value": "tiempo_limite",
+       "label": "Tiempo límite del protocolo"
+      },
+      {
+       "value": "dolor",
+       "label": "Dolor o síntoma"
+      }
+     ],
+     "required": {
+      "if": {
+       "key": "trunk_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "trunk_realizada",
+      "equals": "Sí"
+     }
+    }
+   ]
+  },
+  {
+   "id": "cardio",
+   "title": "Capacidad cardiorrespiratoria: caminata de 2 km",
+   "fields": [
+    {
+     "key": "cardio_realizada",
+     "label": "¿Se realizó la caminata de 2 km?",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "cardio_motivo_no",
+     "label": "Motivo si no se realizó",
+     "type": "text",
+     "required": {
+      "if": {
+       "key": "cardio_realizada",
+       "equals": "No"
+      }
+     },
+     "visibleIf": {
+      "key": "cardio_realizada",
+      "equals": "No"
+     }
+    },
+    {
+     "key": "cardio_fc_dispositivo",
+     "label": "Dispositivo de FC",
+     "type": "select",
+     "options": [
+      {
+       "value": "banda",
+       "label": "Banda pectoral"
+      },
+      {
+       "value": "reloj",
+       "label": "Reloj de muñeca"
+      }
+     ],
+     "required": {
+      "if": {
+       "key": "cardio_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "cardio_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "c2km_min",
+     "label": "Tiempo de la caminata: minutos",
+     "type": "integer",
+     "unit": "min",
+     "min": 5.0,
+     "max": 60.0,
+     "required": {
+      "if": {
+       "key": "cardio_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "cardio_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "c2km_seg",
+     "label": "Tiempo de la caminata: segundos",
+     "type": "integer",
+     "unit": "s",
+     "min": 0.0,
+     "max": 59.0,
+     "required": {
+      "if": {
+       "key": "cardio_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "cardio_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "c2km_fc_final_lpm",
+     "label": "FC al terminar",
+     "type": "number",
+     "unit": "lpm",
+     "min": 60.0,
+     "max": 230.0,
+     "required": {
+      "if": {
+       "key": "cardio_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "cardio_realizada",
+      "equals": "Sí"
+     }
+    },
+    {
+     "key": "c2km_troto",
+     "label": "¿Trotó en algún tramo de la caminata de 2 km?",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "help": "Si el participante trota, la prueba UKK no es válida.",
+     "required": {
+      "if": {
+       "key": "cardio_realizada",
+       "equals": "Sí"
+      }
+     },
+     "visibleIf": {
+      "key": "cardio_realizada",
+      "equals": "Sí"
+     }
+    }
+   ]
+  },
+  {
+   "id": "cierre",
+   "title": "Incidentes y cierre",
+   "fields": [
+    {
+     "key": "incidentes",
+     "label": "Incidentes o síntomas durante la sesión (escribe «Ninguno» si no hubo)",
+     "type": "textarea",
+     "required": false
+    },
+    {
+     "key": "observaciones",
+     "label": "Observaciones (equipo distinto, cambios en el protocolo, otros)",
+     "type": "textarea",
+     "required": false
+    },
+    {
+     "key": "datos_faltantes_motivo",
+     "label": "Datos faltantes y motivo",
+     "type": "textarea",
+     "required": false
+    },
+    {
+     "key": "sesion_completa",
+     "label": "¿Sesión completa?",
+     "type": "select",
+     "options": [
+      {
+       "value": "Sí",
+       "label": "Sí"
+      },
+      {
+       "value": "No",
+       "label": "No"
+      }
+     ],
+     "required": true
+    },
+    {
+     "key": "equipos_cambio",
+     "label": "Equipo distinto al de la hoja de equipos",
+     "type": "textarea",
+     "required": false
+    }
+   ]
+  }
+ ],
+ "gate": {
+  "appliesFromSection": "antrop",
+  "requires": [
+   {
+    "key": "consentimiento",
+    "equals": "Sí",
+    "message": "Sin consentimiento firmado no se continúa."
+   },
+   {
+    "key": "elegible",
+    "equals": "Sí",
+    "message": "El participante no es elegible según el protocolo: no se continúa."
+   },
+   {
+    "key": "parq_resultado",
+    "equals": "Apto",
+    "message": "El PAR-Q+ no resultó apto: no se hacen las pruebas de esfuerzo."
+   },
+   {
+    "key": "criterio_seguridad",
+    "equals": "Cumple",
+    "message": "El criterio de seguridad no se cumple: no se continúa."
+   }
+  ]
+ },
+ "thresholds": {
+  "peso_kg": 0.2,
+  "talla_cm": 0.5,
+  "cintura_cm": 1.0,
+  "cadera_cm": 1.0,
+  "brazo_cm": 1.0,
+  "muslo_cm": 1.0,
+  "pantorrilla_cm": 1.0
+ },
+ "exportColumns": [
+  "id_participante",
+  "fecha",
+  "hora_inicio",
+  "evaluador",
+  "consentimiento",
+  "edad_anios",
+  "sexo",
+  "dias_entreno_sem",
+  "entrena_competitivo",
+  "elegible",
+  "parq_aplicado",
+  "parq_resultado",
+  "fc_reposo_lpm",
+  "fc_dispositivo_reposo",
+  "criterio_seguridad",
+  "peso_kg_1",
+  "peso_kg_2",
+  "talla_cm_1",
+  "talla_cm_2",
+  "cintura_cm_1",
+  "cintura_cm_2",
+  "cadera_cm_1",
+  "cadera_cm_2",
+  "brazo_cm_1",
+  "brazo_cm_2",
+  "muslo_cm_1",
+  "muslo_cm_2",
+  "pantorrilla_cm_1",
+  "pantorrilla_cm_2",
+  "lado_medido",
+  "bia_realizada",
+  "bia_motivo_no",
+  "bia_pct_grasa",
+  "bia_entradas_registradas",
+  "bia_horas_ultima_comida",
+  "bia_ejercicio_24h",
+  "bia_hidratacion",
+  "sr_realizada",
+  "sr_motivo_no",
+  "sr_cm_1",
+  "sr_cm_2",
+  "sr_cm_3",
+  "grip_mano_dominante",
+  "grip_mano_evaluada",
+  "grip_kg_1",
+  "grip_kg_2",
+  "grip_kg_3",
+  "trunk_realizada",
+  "trunk_motivo_no",
+  "trunk_tiempo_s",
+  "trunk_fin",
+  "cardio_realizada",
+  "cardio_motivo_no",
+  "cardio_fc_dispositivo",
+  "c2km_min",
+  "c2km_seg",
+  "c2km_fc_final_lpm",
+  "c2km_troto",
+  "incidentes",
+  "observaciones",
+  "datos_faltantes_motivo",
+  "sesion_completa",
+  "equipos_cambio",
+  "peso_kg_prom",
+  "talla_cm_prom",
+  "cintura_cm_prom",
+  "cadera_cm_prom",
+  "brazo_cm_prom",
+  "muslo_cm_prom",
+  "pantorrilla_cm_prom",
+  "dif_peso_kg",
+  "dif_talla_cm",
+  "dif_cintura_cm",
+  "dif_cadera_cm",
+  "dif_brazo_cm",
+  "dif_muslo_cm",
+  "dif_pantorrilla_cm",
+  "imc_kg_m2",
+  "grip_kg_max",
+  "sr_cm_max",
+  "c2km_total_s"
+ ]
+}

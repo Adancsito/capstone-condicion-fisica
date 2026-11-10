@@ -1,0 +1,4 @@
+__pycache__/
+.pytest_cache/
+# Resultados generados a partir de datos de salud seudonimizados: no se suben al repositorio.
+salida/

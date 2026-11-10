@@ -1,0 +1,82 @@
+rules_version = '2';
+
+// Reglas de Firestore del proyecto.
+//  - Lo de cada persona (historial de perfiles y consentimiento) vive bajo usuarios/{uid} y solo esa persona lo lee o lo escribe.
+//  - El modo Investigador solo lo usa una cuenta que el equipo agregó A MANO en la colección `investigadores`, con el mismo uid que
+//    figura en Authentication y el campo activo = true. Nadie puede crear ni cambiar esos documentos desde la aplicación.
+//  - Quien pide ser investigador deja una solicitud en `solicitudesInvestigador/{uid}`; se revisa a mano en la consola.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function esInvestigador() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/investigadores/$(request.auth.uid))
+        && get(/databases/$(database)/documents/investigadores/$(request.auth.uid)).data.activo == true;
+    }
+
+    // Lo escribe solo la consola de Firebase (a mano). La persona únicamente puede leer su propio documento.
+    match /investigadores/{uid} {
+      allow get: if signedIn() && request.auth.uid == uid;
+      allow list, write: if false;
+    }
+
+    // Solicitud para ser investigador: una por cuenta, solo con los campos esperados y sin poder borrarla.
+    match /solicitudesInvestigador/{uid} {
+      allow get: if signedIn() && request.auth.uid == uid;
+      allow list, delete: if false;
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.uid == uid
+        && request.resource.data.keys().hasOnly(['uid', 'correo', 'nombre', 'institucion', 'motivo', 'createdAt'])
+        && request.resource.data.motivo is string && request.resource.data.motivo.size() <= 1000
+        && request.resource.data.nombre is string && request.resource.data.nombre.size() <= 120
+        && request.resource.data.institucion is string && request.resource.data.institucion.size() <= 160
+        && request.resource.data.createdAt is string;
+      allow update: if false;
+    }
+
+    match /usuarios/{uid} {
+      // Constancia del consentimiento: versión y fecha.
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow create, update: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['consentVersion', 'consentAt'])
+        && request.resource.data.consentVersion is string
+        && request.resource.data.consentAt is string;
+      allow delete: if false;
+
+      // Historial del modo Perfil.
+      match /perfiles/{id} {
+        allow read, delete: if signedIn() && request.auth.uid == uid;
+        allow create, update: if signedIn() && request.auth.uid == uid
+          && request.resource.data.id == id
+          && request.resource.data.createdAt is string
+          && request.resource.data.bundleVersion is string
+          && request.resource.data.isDemo is bool
+          && request.resource.data.inputs is map
+          && request.resource.data.results is list
+          && request.resource.data.results.size() <= 5
+          && request.resource.data.keys().hasOnly(['id', 'createdAt', 'bundleVersion', 'isDemo', 'inputs', 'results']);
+      }
+
+      // Sesiones del modo Investigador: solo la cuenta aprobada, sobre lo suyo. No se borran ni aceptan nombre ni DNI.
+      match /sesiones/{id} {
+        allow read: if signedIn() && request.auth.uid == uid && esInvestigador();
+        allow create, update: if signedIn() && request.auth.uid == uid && esInvestigador()
+          && id.matches('P[0-9]{3}')
+          && request.resource.data.id == id
+          && request.resource.data.values is map
+          && !('nombre' in request.resource.data.values)
+          && !('dni' in request.resource.data.values);
+        allow delete: if false;
+      }
+    }
+
+    // Todo lo demás, incluida la colección antigua `sesiones` compartida, queda cerrado.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

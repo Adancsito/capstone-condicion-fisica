@@ -40,3 +40,18 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Firebase
+.firebase/
+
+# Android (compilacion local)
+/android/app/build
+/android/build
+/android/.gradle
+/android/local.properties
+
+# Datos de salud y archivos locales: no se suben
+*.xlsx
+*.csv
+.env
+.env.*
